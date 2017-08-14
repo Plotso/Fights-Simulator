@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Engine.cs" />
     <Compile Include="FightersGenerator.cs" />
     <Compile Include="Models\Fighter.cs" />
     <Compile Include="Models\Tournament.cs" />
