@@ -1,5 +1,6 @@
 ﻿namespace Fights_Simulator.Models
 {
+    using Fights_Simulator.Interfaces;
     using Fights_Simulator.Miscellaneous;
     using System;
     using System.Collections.Generic;
@@ -49,6 +50,7 @@
 
         }
 
+        public FighterInventory Inventory { get => this.inventory; }
         public string Name { get; }
 
         public int Age
@@ -96,18 +98,18 @@
                     throw new ArgumentException("Fighter has run out of energy!");
                 }
                 this.energy = value;
-                
+
             }
         }
 
         public double Speed
         {
-            get => speed;
+            get => speed + this.inventory.TotalSpeedBonus;
             set
             {
-                if (CheckPercentage(this.speed,value))
+                if (CheckPercentage(this.speed, value))
                 {
-                  throw new ArgumentException("Figher has maximum speed!");
+                    throw new ArgumentException("Figher has maximum speed!");
                 }
                 this.speed += value;
             }
@@ -115,7 +117,7 @@
 
         public double Power
         {
-            get => power;
+            get => power + this.inventory.TotalPowerBonus;
             set
             {
                 if (CheckPercentage(this.power, value))
@@ -128,7 +130,7 @@
 
         public double Accuracy
         {
-            get => accuracy;
+            get => accuracy + this.inventory.TotalAccuracyBonus;
             set
             {
                 if (CheckPercentage(this.accuracy, value))
@@ -141,7 +143,7 @@
 
         public double Deffence
         {
-            get => deffence;
+            get => deffence + this.inventory.TotalDefenceBonus;
             set
             {
                 if (CheckPercentage(this.deffence, value))
@@ -177,7 +179,7 @@
 
         public double Intelligence
         {
-            get => intelligence;
+            get => intelligence + this.inventory.TotalIntelligenceBonus;
             set => intelligence = value;
         }
 
@@ -198,7 +200,7 @@
                 overall = overall - (overall * 50 / 100);
             }
 
-            return Math.Round(overall,2);
+            return Math.Round(overall, 2);
         }
 
         private double GenerateOverall()
@@ -248,7 +250,7 @@
 
         public void Retire()
         {
-            
+
         }
 
         public double DecreaseEnergy
@@ -264,6 +266,11 @@
             }
         }
 
+        public void AddItem(IItem item)
+        {
+            this.inventory.AddItem(item);
+        }
+
         public bool CheckPercentage(double currentValue, double aditional_value)
         {
             if (currentValue + aditional_value > 100)
@@ -275,8 +282,14 @@
 
         public override string ToString()
         {
-            return
-                $"{this.Name} - {this.Age} years old with height {this.Height} and weights {this.Weight}. Trophies won - {this.trophiesWon} ";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{this.Name} - {this.Age} years old with height {this.Height}cm and weights {this.Weight}kg.");
+            sb.AppendLine($"Overall - {GenerateOverall():f2}");
+            sb.AppendLine($"Trophies won - {this.trophiesWon}");
+            sb.AppendLine($"Points - {this.Points}");
+
+            return sb.ToString();
             //His discipline is rated as {this.Discipline} out of 10 and his intelligence is {this.Intelligence}%
         }
 

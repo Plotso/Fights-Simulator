@@ -7,7 +7,11 @@
 
         string CreateFighter(IList<string> arguments);
 
+        string InspectFighter(IList<string> arguments);
+
         string DeleteFighter(IList<string> arguments);
+
+        string BuyItem(IList<string> arguments);
 
         string Help(IList<string> arguments);
     }

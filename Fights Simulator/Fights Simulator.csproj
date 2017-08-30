@@ -43,12 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\BuyCommand.cs" />
     <Compile Include="Commands\CreateCommand.cs" />
     <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\InspectCommand.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\FighterManager.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IManager.cs" />
     <Compile Include="Miscellaneous\FighterCreator.cs" />
     <Compile Include="Miscellaneous\FightersGenerator.cs" />
@@ -56,6 +59,12 @@
     <Compile Include="Miscellaneous\FighterInventory.cs" />
     <Compile Include="Miscellaneous\ItemAttribute.cs" />
     <Compile Include="Models\Fighter.cs" />
+    <Compile Include="Models\Items\AbstractItem.cs" />
+    <Compile Include="Models\Items\Boots.cs" />
+    <Compile Include="Models\Items\Gloves.cs" />
+    <Compile Include="Models\Items\Helmet.cs" />
+    <Compile Include="Models\Items\Mouthguard.cs" />
+    <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\Tournament.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

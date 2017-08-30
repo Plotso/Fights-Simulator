@@ -83,9 +83,10 @@
             sb.AppendLine("So, in order to play the game you should know some basic commands:");
             sb.AppendLine("In order to begin you professional experience in the fighting environment, you must first create a fighter!");
             sb.AppendLine(">Create {Name} -> you will be send further to edit the info of the fighter you're up to create with the given name");
-            sb.AppendLine(">Add Item -> well, you will choose and buy item to your fighter in order to improve his stats");
+            sb.AppendLine(">Buy Item -> well, you will choose and buy item to your fighter in order to improve his stats");
             sb.AppendLine(">Inspect Fighter -> get overall info about your fighter");
             sb.AppendLine(">Inspect Fighter Inventory -> get info about what items do your fighter contain");
+            sb.AppendLine(">Delete Fighter -> delete the fighter with that name ");
             sb.AppendLine(">Help -> you'll be shown the list with commands once again");
             sb.AppendLine(">Quit -> quit the game / and lose everything simply because we don't have DB yet :D /");
 
