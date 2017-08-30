@@ -1,4 +1,4 @@
-﻿namespace Fights_Simulator
+﻿namespace Fights_Simulator.Miscellaneous
 {
     using System;
     using System.Collections.Generic;
@@ -7,28 +7,16 @@
     using System.Threading.Tasks;
     using Models;
 
-    public class FightersGenerator
+    public class FighterCreator
     {
-        public Fighter GenerateFighter(string name, int age)
+        public Fighter CreateFighter(string name, int age, int height, double weight)
         {
-            var fighter = new Fighter(name,age,GenerateHeight(),GenerateWeight(),GenerateHealth(),GenerateEnergy(),
-                GenerateSpeed(),GeneratePower(),GenerateAccuracy(),GenerateDeffence(),GenerateDiscipline(),GenerateIntelligence());
+            var fighter = new Fighter(name, age, height, weight, GenerateHealth(), GenerateEnergy(),
+                GenerateSpeed(), GeneratePower(), GenerateAccuracy(), GenerateDeffence(), GenerateDiscipline(), GenerateIntelligence());
             return fighter;
         }
 
-        public int GenerateHeight()
-        {
-            Random rnd = new Random();
-            return rnd.Next(150,220);
-        }
-
-        public double GenerateWeight()
-        {
-            Random rnd = new Random();
-
-            return Convert.ToDouble(rnd.Next(40, 155));
-        }
-
+        
         public double GenerateHealth()
         {
             Random rnd = new Random();
@@ -42,7 +30,7 @@
 
             //return Convert.ToDouble(rnd.Next(50, 100));
 
-            return 95;
+            return 100;
         }
 
         public double GenerateSpeed()

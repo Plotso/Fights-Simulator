@@ -42,12 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\CreateCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\QuitCommand.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="FightersGenerator.cs" />
+    <Compile Include="Core\FighterManager.cs" />
+    <Compile Include="Interfaces\IManager.cs" />
+    <Compile Include="Miscellaneous\FighterCreator.cs" />
+    <Compile Include="Miscellaneous\FightersGenerator.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Miscellaneous\FighterInventory.cs" />
+    <Compile Include="Miscellaneous\ItemAttribute.cs" />
     <Compile Include="Models\Fighter.cs" />
     <Compile Include="Models\Tournament.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Message.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

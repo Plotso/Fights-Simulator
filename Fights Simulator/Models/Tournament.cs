@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Timers;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Tournament
     {
         private Fighter[] participants;
+        private double entryFee;
+        private double prize;
 
         public Tournament(Fighter[] participatingFighters)
         {
@@ -20,6 +20,17 @@
         {
             get { return this.participants; }
             set { this.participants = value; }
+        }
+
+        public double EntryFee
+        {
+            get => this.entryFee;
+            set => this.entryFee = value;
+        }
+        public double Prize
+        {
+            get => this.prize;
+            //set => this.prize = value;
         }
 
         public void Start()
@@ -44,7 +55,10 @@
             Console.WriteLine("It is the GRAND FINAL!");
             Dictionary<Fighter, Fighter> finalPair = GeneratePairs(fighters);
             var winner = Fight(fighters[0], fighters[1]);
-            Console.WriteLine($"The winner is {winner.Name}({winner.Age}) with {winner.Energy} energy remaining remaining.");
+            winner.TrophiesWon++;
+            //fighters.Remove(winner);
+            //fighters[0].SecondPlaces
+            Console.WriteLine($"The winner is {winner.Name}({winner.Age}) with {winner.Energy} energy remaining remaining.Trophies won: {winner.TrophiesWon}");
 
         }
 
@@ -96,62 +110,76 @@
 
             if (fighter1.Energy > fighter2.Energy)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Energy < fighter2.Energy)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Intelligence > fighter2.Intelligence)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Intelligence < fighter2.Intelligence)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Deffence > fighter2.Deffence)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Deffence < fighter2.Deffence)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Speed > fighter2.Speed)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Speed < fighter2.Speed)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Age < fighter2.Age)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Age > fighter2.Age)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Accuracy < fighter2.Accuracy)
             {
+                fighter1.Energy -= 30;
                 return fighter1;
             }
             else if (fighter1.Accuracy > fighter2.Accuracy)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
 
             if (fighter1.Health < fighter2.Health)
             {
+                fighter2.Energy -= 30;
                 return fighter2;
             }
+            fighter1.Energy -= 30;
             return fighter1;
         }
 

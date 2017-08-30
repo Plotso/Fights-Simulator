@@ -1,5 +1,6 @@
 ﻿namespace Fights_Simulator.Models
 {
+    using Fights_Simulator.Miscellaneous;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +9,7 @@
 
     public class Fighter
     {
-        public string Name { get; }
+        private FighterInventory inventory;
         private int age;
         private int height;
         private double weight;
@@ -21,7 +22,14 @@
         private int discipline;
         private double intelligence;
 
-        public Fighter(string name, int age, int height, double weight, double health, double energy, double speed, double power, double accuracy, double deffence, int discipline, double intelligence)
+        private double money;
+        private int points;
+        private int trophiesWon;
+        private int secondPlaces;
+        private int thirdPlaces;
+
+        public Fighter(string name, int age, int height, double weight, double health, double energy,
+            double speed, double power, double accuracy, double deffence, int discipline, double intelligence)
         {
             this.Name = name;
             this.age = age;
@@ -35,7 +43,13 @@
             this.deffence = deffence;
             this.discipline = discipline;
             this.intelligence = intelligence;
+            this.inventory = new FighterInventory();
+            this.Money = 5000;
+            this.points = 0;
+
         }
+
+        public string Name { get; }
 
         public int Age
         {
@@ -73,11 +87,16 @@
             get => energy;
             set
             {
-                //if (CheckPercentage(this.energy, value))
-                //{
-                //   throw new ArgumentException("Fighter has maximum energy!");
-                //}
-                this.energy += value;
+                if (CheckPercentage(this.energy, value))
+                {
+                    throw new ArgumentException($"Fighter {Name} has maximum energy!");
+                }
+                else if (this.energy + value == 0)
+                {
+                    throw new ArgumentException("Fighter has run out of energy!");
+                }
+                this.energy = value;
+                
             }
         }
 
@@ -199,11 +218,51 @@
             return overall;
         }
 
+        public double Money
+        {
+            get => this.money;
+            set => this.money = value;
+        }
+
+        public int Points
+        {
+            get => this.points;
+            set => this.points = value;
+        }
+
+        public int TrophiesWon
+        {
+            get => this.trophiesWon;
+            set => this.trophiesWon = value;
+        }
+        public int SecondPlaces
+        {
+            get => this.secondPlaces;
+            set => this.secondPlaces = value;
+        }
+        public int ThirdPlaces
+        {
+            get => this.thirdPlaces;
+            set => this.thirdPlaces = value;
+        }
+
         public void Retire()
         {
             
         }
 
+        public double DecreaseEnergy
+        {
+            get => this.energy;
+            set
+            {
+                if (this.energy - value == 0)
+                {
+                    throw new ArgumentException("Fighter has run out of energy!");
+                }
+                this.energy -= value;
+            }
+        }
 
         public bool CheckPercentage(double currentValue, double aditional_value)
         {
@@ -217,7 +276,30 @@
         public override string ToString()
         {
             return
-                $"{this.Name} - {this.Age} years old with height {this.Height} and weights {this.Weight}. His discipline is rated as {this.Discipline} out of 10 and his intelligence is {this.Intelligence}%";
+                $"{this.Name} - {this.Age} years old with height {this.Height} and weights {this.Weight}. Trophies won - {this.trophiesWon} ";
+            //His discipline is rated as {this.Discipline} out of 10 and his intelligence is {this.Intelligence}%
+        }
+
+        public string FighterInfo()
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{this.Name} - {this.Age} years old.");
+            sb.AppendLine($"{this.Height}cm, {this.Weight}kg.");
+            sb.AppendLine($"Health - {this.Health} and Energy - {this.Energy}");
+            sb.AppendLine($"Speed - {this.Speed}");
+            sb.AppendLine($"Power - {this.Power}");
+            sb.AppendLine($"Accuracy - {this.Accuracy}");
+            sb.AppendLine($"Deffence - {this.Deffence}");
+            sb.AppendLine($"Discipline - {this.Discipline}");
+            sb.AppendLine($"Intelligence - {this.Intelligence}");
+            sb.AppendLine($"Money - {this.Money}");
+            sb.AppendLine($"Points - {this.Points}");
+            sb.AppendLine($"Trophies - {this.TrophiesWon}");
+            sb.AppendLine($"Runner-Up - {this.SecondPlaces}");
+
+
+            return sb.ToString();
         }
     }
 }
